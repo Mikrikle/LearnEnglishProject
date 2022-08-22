@@ -36,6 +36,8 @@
             this.textBox_word = new System.Windows.Forms.TextBox();
             this.label_info = new System.Windows.Forms.Label();
             this.button_ok = new System.Windows.Forms.Button();
+            this.button_menu = new System.Windows.Forms.Button();
+            this.button_words = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,6 +109,33 @@
             this.button_ok.UseVisualStyleBackColor = false;
             this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
             // 
+            // button_menu
+            // 
+            this.button_menu.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_menu.Location = new System.Drawing.Point(14, 149);
+            this.button_menu.Margin = new System.Windows.Forms.Padding(5);
+            this.button_menu.Name = "button_menu";
+            this.button_menu.Size = new System.Drawing.Size(64, 32);
+            this.button_menu.TabIndex = 2;
+            this.button_menu.TabStop = false;
+            this.button_menu.Text = "Menu";
+            this.button_menu.UseVisualStyleBackColor = false;
+            // 
+            // button_words
+            // 
+            this.button_words.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.button_words.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_words.Location = new System.Drawing.Point(88, 149);
+            this.button_words.Margin = new System.Windows.Forms.Padding(5);
+            this.button_words.Name = "button_words";
+            this.button_words.Size = new System.Drawing.Size(64, 32);
+            this.button_words.TabIndex = 3;
+            this.button_words.TabStop = false;
+            this.button_words.Text = "Words";
+            this.button_words.UseVisualStyleBackColor = false;
+            this.button_words.Click += new System.EventHandler(this.button_words_Click);
+            // 
             // Form_Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -114,6 +143,8 @@
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(280, 200);
             this.ControlBox = false;
+            this.Controls.Add(this.button_words);
+            this.Controls.Add(this.button_menu);
             this.Controls.Add(this.button_ok);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -124,6 +155,7 @@
             this.Text = "LearnEnglish";
             this.TopMost = true;
             this.Shown += new System.EventHandler(this.Form_Add_Shown);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form_Add_MouseClick);
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Form_Add_MouseDoubleClick);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -139,5 +171,7 @@
         private TextBox textBox_word;
         private TextBox textBox_translate;
         private Button button_ok;
+        private Button button_menu;
+        private Button button_words;
     }
 }

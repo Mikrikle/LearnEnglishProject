@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace LearnEnglishApp
 {
     public partial class Form_Add : System.Windows.Forms.Form
@@ -25,6 +27,12 @@ namespace LearnEnglishApp
             this.Hide();
         }
 
+        private void Form_Add_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+                this.Hide();
+        }
+
         private void SetPosition()
         {
             int boundWidth = Screen.PrimaryScreen.Bounds.Width;
@@ -36,7 +44,7 @@ namespace LearnEnglishApp
 
         private void notifyIcon_app_MouseClick(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 if (this.Visible)
                     this.Hide();
@@ -46,7 +54,7 @@ namespace LearnEnglishApp
             else
             {
                 Application.Exit();
-            } 
+            }
         }
 
         private void button_ok_Click(object sender, EventArgs e)
@@ -55,14 +63,17 @@ namespace LearnEnglishApp
                 || String.IsNullOrWhiteSpace(textBox_translate.Text))
             {
                 ShowInfo("Empty input", Color.Red);
+                return;
             }
-            else
-            {
-                //MessageBox.Show($"{textBox_word.Text} - {textBox_translate.Text}");
-                textBox_word.Clear();
-                textBox_translate.Clear();
-            }
+
+            FileController.Write($"{textBox_word.Text} - {textBox_translate.Text}");
+            textBox_word.Clear();
+            textBox_translate.Clear();
         }
 
+        private void button_words_Click(object sender, EventArgs e)
+        {
+            FileController.OpenWithNotepad();
+        }
     }
 }
