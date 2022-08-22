@@ -19,7 +19,17 @@ namespace LearnEnglishApp
 
         private void notifyIcon_app_MouseClick(object sender, MouseEventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
+            this.Show();
+        }
+
+        private void notifyIcon_app_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Hide();
         }
     }
 }
