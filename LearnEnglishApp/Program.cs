@@ -1,4 +1,4 @@
-namespace LearnEnglishApp
+namespace LearnEnglishNotify
 {
     internal static class Program
     {

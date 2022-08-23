@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Diagnostics;
 
-namespace LearnEnglishApp
+namespace LearnEnglishNotify
 {
     public static class FileController
     {
@@ -17,7 +16,7 @@ namespace LearnEnglishApp
 
         public static string FullFileName { get; set; } = Path.Combine(DirectoryName, FileName);
 
-        public static void Write(string text)
+        public static void Add(string text)
         {
             if(!Directory.Exists(DirectoryName))
                 Directory.CreateDirectory(DirectoryName);
@@ -27,13 +26,26 @@ namespace LearnEnglishApp
                 sw.WriteLine(text);
             }
         }
-
-        public static void OpenWithNotepad()
+        
+        public static IEnumerable<string> Read()
         {
             if (!File.Exists(FullFileName))
-                File.Create(FullFileName).Close();
-            Process.Start("notepad.exe", FullFileName);
+                return Array.Empty<string>();
+            return File.ReadLines(FullFileName);
         }
 
+        public static void Update(IEnumerable<string> text)
+        {
+            using (StreamWriter sw = new StreamWriter(FullFileName, false))
+            {
+                foreach (string line in text)
+                    sw.WriteLine(line);
+            }               
+        }
+
+        public static void Update(string text)
+        {
+            File.WriteAllText(FullFileName, text);
+        }
     }
 }

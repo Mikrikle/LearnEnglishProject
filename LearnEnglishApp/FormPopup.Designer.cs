@@ -1,4 +1,4 @@
-﻿namespace LearnEnglishApp
+﻿namespace LearnEnglishNotify
 {
     partial class FormPopup
     {
@@ -35,12 +35,13 @@
             // 
             // label_text
             // 
+            this.label_text.BackColor = System.Drawing.Color.Black;
             this.label_text.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_text.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_text.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_text.ForeColor = System.Drawing.Color.Red;
-            this.label_text.Location = new System.Drawing.Point(0, 0);
+            this.label_text.Location = new System.Drawing.Point(1, 1);
             this.label_text.Name = "label_text";
-            this.label_text.Size = new System.Drawing.Size(280, 60);
+            this.label_text.Size = new System.Drawing.Size(278, 58);
             this.label_text.TabIndex = 0;
             this.label_text.Text = "label1";
             this.label_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -59,10 +60,10 @@
             this.Controls.Add(this.label_text);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormPopup";
-            this.Opacity = 0.8D;
+            this.Padding = new System.Windows.Forms.Padding(1);
             this.ShowInTaskbar = false;
             this.Text = "Form1";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPopup_FormClosed);
+            this.TopMost = true;
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormPopup_MouseClick);
             this.ResumeLayout(false);
 
