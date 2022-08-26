@@ -16,11 +16,27 @@ namespace LearnEnglishNotify
 
         private static string WordsDirectoryName => Path.GetDirectoryName(WordsFileName) ?? _defaultDirectory;
 
-        private static string _fileName = Path.Combine(_defaultDirectory,
-            "words.txt");
+        private static string? _fileName = null;
+
         public static string WordsFileName {
-            get { return _fileName; }
-            set { _fileName = value; OnFileNameChanged?.Invoke(value); } 
+            get 
+            {
+                if (_fileName == null)
+                {
+                    string? savedName = Properties.Settings.Default["FileName"]?.ToString();
+                    if (savedName == null || !Directory.Exists(Path.GetDirectoryName(savedName)))
+                        _fileName = Path.Combine(_defaultDirectory, "words.txt");
+                    else
+                        _fileName = savedName;
+                } 
+                return _fileName; 
+            }
+            set 
+            { 
+                _fileName = value; OnFileNameChanged?.Invoke(value);
+                Properties.Settings.Default["FileName"] = value;
+                Properties.Settings.Default.Save();
+            } 
         } 
 
         public static void Add(string line)

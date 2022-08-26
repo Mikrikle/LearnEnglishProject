@@ -41,9 +41,10 @@ namespace LearnEnglishNotify
         {
             using (SaveFileDialog saveFileDialog = new())
             {
+                saveFileDialog.OverwritePrompt = false;
                 saveFileDialog.InitialDirectory = Path.GetDirectoryName(FileController.WordsFileName);
                 saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                saveFileDialog.FilterIndex = 2;
+                saveFileDialog.FilterIndex = 1;
                 saveFileDialog.RestoreDirectory = true;
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
