@@ -9,19 +9,26 @@ namespace LearnEnglishNotify
 {
     public static class FileController
     {
-        public static string DirectoryName { get; set; } = Path.Combine(
+        public static event Action<string>? OnFileNameChanged = null;
+
+        private static readonly string _defaultDirectory = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "LearnEnglishWords");
 
-        public static string FileName { get; set; } = "words.txt";
+        private static string WordsDirectoryName => Path.GetDirectoryName(WordsFileName) ?? _defaultDirectory;
 
-        public static string FullFileName { get; set; } = Path.Combine(DirectoryName, FileName);
+        private static string _fileName = Path.Combine(_defaultDirectory,
+            "words.txt");
+        public static string WordsFileName {
+            get { return _fileName; }
+            set { _fileName = value; OnFileNameChanged?.Invoke(value); } 
+        } 
 
         public static void Add(string line)
         {
-            if(!Directory.Exists(DirectoryName))
-                Directory.CreateDirectory(DirectoryName);
+            if(!Directory.Exists(WordsDirectoryName))
+                Directory.CreateDirectory(WordsDirectoryName);
 
-            using (StreamWriter sw = new StreamWriter(FullFileName, true))
+            using (StreamWriter sw = new(WordsFileName, true))
             {
                 sw.WriteLine(line);
             }
@@ -29,14 +36,14 @@ namespace LearnEnglishNotify
         
         public static IEnumerable<string> ReadLines()
         {
-            if (!File.Exists(FullFileName))
+            if (!File.Exists(WordsFileName))
                 return Array.Empty<string>();
-            return File.ReadLines(FullFileName);
+            return File.ReadLines(WordsFileName);
         }
 
         public static void Update(IEnumerable<string> text)
         {
-            using (StreamWriter sw = new StreamWriter(FullFileName, false))
+            using (StreamWriter sw = new(WordsFileName, false))
             {
                 foreach (string line in text)
                     sw.WriteLine(line);
@@ -45,7 +52,13 @@ namespace LearnEnglishNotify
 
         public static void Update(string text)
         {
-            File.WriteAllText(FullFileName, text);
+            File.WriteAllText(WordsFileName, text);
+        }
+
+        public static void RemoveDuplicates()
+        {
+            List<string> lines = ReadLines().ToList();
+            Update(lines.Distinct());
         }
     }
 }
