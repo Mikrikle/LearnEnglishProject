@@ -95,6 +95,7 @@ namespace LearnEnglishNotify
             FileController.Add($"{textBox_word.Text} - {textBox_translate.Text}");
             textBox_word.Clear();
             textBox_translate.Clear();
+            _popup.ShowSuccess("Added");
         }
 
         private void button_words_Click(object sender, EventArgs e)
