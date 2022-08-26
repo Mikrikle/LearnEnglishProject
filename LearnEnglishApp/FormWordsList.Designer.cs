@@ -34,6 +34,8 @@
             this.textBox_translate = new System.Windows.Forms.TextBox();
             this.textBox_find = new System.Windows.Forms.TextBox();
             this.button_saveChanges = new System.Windows.Forms.Button();
+            this.button_remove = new System.Windows.Forms.Button();
+            this.button_window = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_update
@@ -42,7 +44,7 @@
             this.button_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_update.Location = new System.Drawing.Point(5, 460);
             this.button_update.Name = "button_update";
-            this.button_update.Size = new System.Drawing.Size(68, 32);
+            this.button_update.Size = new System.Drawing.Size(80, 32);
             this.button_update.TabIndex = 3;
             this.button_update.Text = "Update";
             this.button_update.UseVisualStyleBackColor = false;
@@ -96,12 +98,37 @@
             this.button_saveChanges.UseVisualStyleBackColor = false;
             this.button_saveChanges.Click += new System.EventHandler(this.button_saveChanges_Click);
             // 
+            // button_remove
+            // 
+            this.button_remove.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.button_remove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_remove.Location = new System.Drawing.Point(91, 460);
+            this.button_remove.Name = "button_remove";
+            this.button_remove.Size = new System.Drawing.Size(80, 32);
+            this.button_remove.TabIndex = 6;
+            this.button_remove.Text = "Remove";
+            this.button_remove.UseVisualStyleBackColor = false;
+            this.button_remove.Click += new System.EventHandler(this.button_remove_Click);
+            // 
+            // button_window
+            // 
+            this.button_window.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_window.Location = new System.Drawing.Point(363, 5);
+            this.button_window.Margin = new System.Windows.Forms.Padding(0);
+            this.button_window.Name = "button_window";
+            this.button_window.Size = new System.Drawing.Size(32, 16);
+            this.button_window.TabIndex = 7;
+            this.button_window.UseVisualStyleBackColor = true;
+            this.button_window.Click += new System.EventHandler(this.button_window_Click);
+            // 
             // FormWordsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(400, 500);
+            this.Controls.Add(this.button_window);
+            this.Controls.Add(this.button_remove);
             this.Controls.Add(this.button_saveChanges);
             this.Controls.Add(this.textBox_find);
             this.Controls.Add(this.textBox_translate);
@@ -114,6 +141,8 @@
             this.ShowInTaskbar = false;
             this.Text = "FormWordsList";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormWordsList_FormClosing);
+            this.VisibleChanged += new System.EventHandler(this.FormWordsList_VisibleChanged);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormWordsList_MouseClick);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -127,5 +156,7 @@
         private TextBox textBox_translate;
         private TextBox textBox_find;
         private Button button_saveChanges;
+        private Button button_remove;
+        private Button button_window;
     }
 }

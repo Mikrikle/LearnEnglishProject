@@ -52,10 +52,10 @@
             this.panel1.Controls.Add(this.textBox_translate);
             this.panel1.Controls.Add(this.textBox_word);
             this.panel1.Controls.Add(this.label_info);
-            this.panel1.Location = new System.Drawing.Point(14, 14);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 50);
+            this.panel1.Location = new System.Drawing.Point(14, 12);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(252, 127);
+            this.panel1.Size = new System.Drawing.Size(252, 129);
             this.panel1.TabIndex = 0;
             // 
             // textBox_translate
@@ -63,10 +63,10 @@
             this.textBox_translate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox_translate.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.textBox_translate.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.textBox_translate.Location = new System.Drawing.Point(0, 79);
+            this.textBox_translate.Location = new System.Drawing.Point(0, 81);
             this.textBox_translate.Multiline = true;
             this.textBox_translate.Name = "textBox_translate";
-            this.textBox_translate.PlaceholderText = "translation";
+            this.textBox_translate.PlaceholderText = "Translation";
             this.textBox_translate.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_translate.Size = new System.Drawing.Size(252, 48);
             this.textBox_translate.TabIndex = 3;
@@ -76,7 +76,7 @@
             this.textBox_word.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox_word.Dock = System.Windows.Forms.DockStyle.Top;
             this.textBox_word.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.textBox_word.Location = new System.Drawing.Point(0, 20);
+            this.textBox_word.Location = new System.Drawing.Point(0, 21);
             this.textBox_word.Multiline = true;
             this.textBox_word.Name = "textBox_word";
             this.textBox_word.PlaceholderText = "English phrase";
@@ -90,7 +90,7 @@
             this.label_info.ForeColor = System.Drawing.Color.White;
             this.label_info.Location = new System.Drawing.Point(0, 0);
             this.label_info.Name = "label_info";
-            this.label_info.Size = new System.Drawing.Size(252, 20);
+            this.label_info.Size = new System.Drawing.Size(252, 21);
             this.label_info.TabIndex = 0;
             this.label_info.Text = "App";
             this.label_info.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -99,7 +99,7 @@
             // 
             this.button_ok.BackColor = System.Drawing.SystemColors.ControlDark;
             this.button_ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_ok.Location = new System.Drawing.Point(202, 149);
+            this.button_ok.Location = new System.Drawing.Point(202, 154);
             this.button_ok.Margin = new System.Windows.Forms.Padding(5);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(64, 32);
@@ -112,10 +112,10 @@
             // 
             this.button_words.BackColor = System.Drawing.SystemColors.ControlDark;
             this.button_words.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_words.Location = new System.Drawing.Point(14, 149);
+            this.button_words.Location = new System.Drawing.Point(14, 154);
             this.button_words.Margin = new System.Windows.Forms.Padding(5);
             this.button_words.Name = "button_words";
-            this.button_words.Size = new System.Drawing.Size(64, 32);
+            this.button_words.Size = new System.Drawing.Size(100, 32);
             this.button_words.TabIndex = 3;
             this.button_words.TabStop = false;
             this.button_words.Text = "Words";

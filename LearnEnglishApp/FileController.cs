@@ -16,18 +16,18 @@ namespace LearnEnglishNotify
 
         public static string FullFileName { get; set; } = Path.Combine(DirectoryName, FileName);
 
-        public static void Add(string text)
+        public static void Add(string line)
         {
             if(!Directory.Exists(DirectoryName))
                 Directory.CreateDirectory(DirectoryName);
 
             using (StreamWriter sw = new StreamWriter(FullFileName, true))
             {
-                sw.WriteLine(text);
+                sw.WriteLine(line);
             }
         }
         
-        public static IEnumerable<string> Read()
+        public static IEnumerable<string> ReadLines()
         {
             if (!File.Exists(FullFileName))
                 return Array.Empty<string>();

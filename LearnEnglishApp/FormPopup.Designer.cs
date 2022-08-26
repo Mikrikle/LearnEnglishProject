@@ -35,7 +35,7 @@
             // 
             // label_text
             // 
-            this.label_text.BackColor = System.Drawing.Color.Black;
+            this.label_text.BackColor = System.Drawing.Color.White;
             this.label_text.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_text.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_text.ForeColor = System.Drawing.Color.Red;

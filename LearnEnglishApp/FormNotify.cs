@@ -2,19 +2,25 @@ namespace LearnEnglishNotify
 {
     public partial class Form_Add : System.Windows.Forms.Form
     {
-        private readonly FormWordsList formWordsList = new();
-        private readonly FormPopup popup = new();
+        private readonly FormWordsList _formWordsList = new();
+        private readonly FormPopup _popup = new();
+        private readonly FormMenu _menu = new FormMenu();
 
         public Form_Add()
         {
             InitializeComponent();
             SetPosition();
 
-            popup.FixLocation = new Point(this.Location.X, this.Location.Y - popup.Height - 10);
-            formWordsList.FixLocation = new Point(this.Location.X - formWordsList.Width - 10,
-                    this.Location.Y + this.Height - formWordsList.Height);
+            notifyIcon_app.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+            notifyIcon_app.ContextMenuStrip.Items.Add("Open", null, (object? sender, EventArgs e) => { Show(); });
+            notifyIcon_app.ContextMenuStrip.Items.Add("Menu", null, (object? sender, EventArgs e) => { _menu.ShowDialog(); });
+            notifyIcon_app.ContextMenuStrip.Items.Add("Exit", null, (object? sender, EventArgs e) => { Application.Exit(); });
 
-            formWordsList.VisibleChanged += (object? sender, EventArgs e) =>
+            _popup.FixLocation = new Point(this.Location.X, this.Location.Y - _popup.Height - 10);
+            _formWordsList.FixLocation = new Point(this.Location.X - _formWordsList.Width - 10,
+                    this.Location.Y + this.Height - _formWordsList.Height);
+
+            _formWordsList.VisibleChanged += (object? sender, EventArgs e) =>
             {
                 if (sender is not FormWordsList f) return;
                 if (f.Visible)
@@ -23,22 +29,26 @@ namespace LearnEnglishNotify
                     button_words.Text = "Words";
             };
 
-            formWordsList.OnSave += (bool state) => { if (state) popup.ShowSuccess("Saved"); };
-            formWordsList.OnUpdate += (bool state) =>
+            _formWordsList.OnSave += (bool state) =>
+            {
+                if (state) 
+                    _popup.ShowSuccess("Saved");
+            };
+            _formWordsList.OnModified += (bool state) =>
             {
                 if (state)
-                    popup.ShowSuccess("Updated");
+                    _popup.ShowSuccess("Successful");
                 else
-                    popup.ShowError("Select item");
+                    _popup.ShowError("Select item");
             };
 
         }
 
         private void ShowWordsList()
         {
-            if (!formWordsList.Visible)
+            if (!_formWordsList.Visible)
             {
-                formWordsList.Show();
+                _formWordsList.Show();
             }
         }
 
@@ -71,10 +81,6 @@ namespace LearnEnglishNotify
                 else
                     Show();
             }
-            else
-            {
-                Application.Exit();
-            }
         }
 
         private void button_ok_Click(object sender, EventArgs e)
@@ -82,7 +88,7 @@ namespace LearnEnglishNotify
             if (String.IsNullOrWhiteSpace(textBox_translate.Text)
                 || String.IsNullOrWhiteSpace(textBox_translate.Text))
             {
-                popup.ShowError("Empty input");
+                _popup.ShowError("Empty input");
                 return;
             }
 
@@ -93,13 +99,13 @@ namespace LearnEnglishNotify
 
         private void button_words_Click(object sender, EventArgs e)
         {
-            if (!formWordsList.Visible)
+            if (!_formWordsList.Visible)
             {
                 ShowWordsList();
             }
             else
             {
-                formWordsList.Hide();
+                _formWordsList.Hide();
             }
         }
     }
