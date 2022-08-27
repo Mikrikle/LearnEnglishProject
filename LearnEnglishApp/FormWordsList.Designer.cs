@@ -81,7 +81,7 @@
             // 
             this.textBox_find.Location = new System.Drawing.Point(5, 8);
             this.textBox_find.Name = "textBox_find";
-            this.textBox_find.PlaceholderText = "find";
+            this.textBox_find.PlaceholderText = "search";
             this.textBox_find.Size = new System.Drawing.Size(200, 27);
             this.textBox_find.TabIndex = 0;
             this.textBox_find.TextChanged += new System.EventHandler(this.textBox_find_TextChanged);

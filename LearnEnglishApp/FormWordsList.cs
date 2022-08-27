@@ -12,7 +12,7 @@ namespace LearnEnglishNotify
 {
     public partial class FormWordsList : Form
     {
-        public event Action<bool>? OnSave = null;
+        public event Action<bool>? OnSaved = null;
         public event Action<bool>? OnModified = null;
         public Point FixLocation { get; set; }
 
@@ -111,7 +111,7 @@ namespace LearnEnglishNotify
         {
             FileController.Update(_words);
             UpdateWords();
-            OnSave?.Invoke(true);
+            OnSaved?.Invoke(true);
         }
 
         private void FormWordsList_MouseClick(object sender, MouseEventArgs e)

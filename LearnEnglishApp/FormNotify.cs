@@ -12,12 +12,12 @@ namespace LearnEnglishNotify
             SetPosition();
 
             notifyIcon_app.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
-            notifyIcon_app.ContextMenuStrip.Items.Add("Open", null, (object? sender, EventArgs e) =>
-                { Show(); });
-            notifyIcon_app.ContextMenuStrip.Items.Add("Menu", null, (object? sender, EventArgs e) =>
-                { if (!_menu.Visible) _menu.ShowDialog(); });
-            notifyIcon_app.ContextMenuStrip.Items.Add("Exit", null, (object? sender, EventArgs e) =>
-                { Application.Exit(); });
+            notifyIcon_app.ContextMenuStrip.Items.Add("Open", null,
+                (object? sender, EventArgs e) => { Show(); });
+            notifyIcon_app.ContextMenuStrip.Items.Add("Menu", null,
+                (object? sender, EventArgs e) => { if (!_menu.Visible) _menu.ShowDialog(); });
+            notifyIcon_app.ContextMenuStrip.Items.Add("Exit", null,
+                (object? sender, EventArgs e) => { Application.Exit(); });
 
             _popup.FixLocation = new Point(this.Location.X, this.Location.Y - _popup.Height - 10);
             _formWordsList.FixLocation = new Point(this.Location.X - _formWordsList.Width - 10,
@@ -32,7 +32,7 @@ namespace LearnEnglishNotify
                     button_words.Text = "Words";
             };
 
-            _formWordsList.OnSave += (bool state) =>
+            _formWordsList.OnSaved += (bool state) =>
             {
                 if (state)
                     _popup.ShowSuccess("Saved");
