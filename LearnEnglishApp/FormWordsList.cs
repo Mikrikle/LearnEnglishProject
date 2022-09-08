@@ -124,6 +124,7 @@ namespace LearnEnglishNotify
         {
             if (Visible == true)
             {
+                button_window.Show();
                 FormBorderStyle = FormBorderStyle.None;
                 UpdateWords();
             }
