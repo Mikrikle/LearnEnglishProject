@@ -3,11 +3,6 @@ namespace LearnEnglishNotify
     public partial class Form_Add : System.Windows.Forms.Form
     {
         /// <summary>
-        /// Occurs when new words have been added
-        /// </summary>
-        public event Action<bool>? OnAdded = null;
-
-        /// <summary>
         /// Window with the wordlist
         /// </summary>
         private readonly FormWordsList _formWordsList = new();
@@ -40,21 +35,6 @@ namespace LearnEnglishNotify
                     this.Location.Y + this.Height - _formWordsList.Height);
 
             // setting events
-            OnAdded += (sucsess) => {
-                if (sucsess)
-                {
-                    FileController.Add($"{textBox_word.Text} - {textBox_translate.Text}");
-                    textBox_word.Clear();
-                    textBox_translate.Clear();
-                    _popup.ShowSuccess("Added");
-                    _formWordsList.UpdateWords();
-                }
-                else
-                {
-                    _popup.ShowError("Empty input");
-                }
-            };
-
             _formWordsList.VisibleChanged += (object? sender, EventArgs e) =>
             {
                 if (sender is not FormWordsList f) return;
@@ -74,6 +54,25 @@ namespace LearnEnglishNotify
                     _popup.ShowError("Please select item");
             };
 
+        }
+
+        /// <summary>
+        /// Writes word and translate into file
+        /// </summary>
+        private void Add()
+        {
+            if (String.IsNullOrWhiteSpace(textBox_translate.Text)
+                || String.IsNullOrWhiteSpace(textBox_translate.Text))
+            {
+                _popup.ShowError("Empty input");
+                return;
+            }
+
+            FileController.Add($"{textBox_word.Text} - {textBox_translate.Text}");
+            textBox_word.Clear();
+            textBox_translate.Clear();
+            _popup.ShowSuccess("Added");
+            _formWordsList.UpdateWords();
         }
 
         /// <summary>
@@ -112,13 +111,7 @@ namespace LearnEnglishNotify
 
         private void button_ok_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(textBox_translate.Text)
-                || String.IsNullOrWhiteSpace(textBox_translate.Text))
-            {
-                OnAdded?.Invoke(false);
-                return;
-            }
-            OnAdded?.Invoke(true);
+            Add();
         }
 
         private void button_words_Click(object sender, EventArgs e)
