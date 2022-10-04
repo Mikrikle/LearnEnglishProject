@@ -9,6 +9,9 @@ namespace LearnEnglishNotify
 {
     public static class FileController
     {
+        /// <summary>
+        /// Occurs when WordsFileName changed
+        /// </summary>
         public static event Action<string>? OnFileNameChanged = null;
 
         private static readonly string _defaultDirectory = Path.Combine(
@@ -33,12 +36,17 @@ namespace LearnEnglishNotify
             }
             set 
             { 
-                _fileName = value; OnFileNameChanged?.Invoke(value);
+                _fileName = value; 
+                OnFileNameChanged?.Invoke(value);
                 Properties.Settings.Default["FileName"] = value;
                 Properties.Settings.Default.Save();
             } 
-        } 
+        }
 
+        /// <summary>
+        /// Add a new record to the file
+        /// </summary>
+        /// <param name="line">string and translation</param>
         public static void Add(string line)
         {
             if(!Directory.Exists(WordsDirectoryName))
@@ -50,6 +58,9 @@ namespace LearnEnglishNotify
             }
         }
         
+        /// <summary>
+        /// Read all records from file
+        /// </summary>
         public static IEnumerable<string> ReadLines()
         {
             if (!File.Exists(WordsFileName))
@@ -57,6 +68,10 @@ namespace LearnEnglishNotify
             return File.ReadLines(WordsFileName);
         }
 
+        /// <summary>
+        /// Overwrite file with new data
+        /// </summary>
+        /// <param name="text">new file data</param>
         public static void Update(IEnumerable<string> text)
         {
             using (StreamWriter sw = new(WordsFileName, false))
@@ -66,6 +81,10 @@ namespace LearnEnglishNotify
             }               
         }
 
+        /// <summary>
+        /// Overwrite file with new data
+        /// </summary>
+        /// <param name="text">new file data</param>
         public static void Update(string text)
         {
             File.WriteAllText(WordsFileName, text);
