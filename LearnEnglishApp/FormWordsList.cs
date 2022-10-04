@@ -73,6 +73,7 @@ namespace LearnEnglishNotify
 
         private void button_update_Click(object sender, EventArgs e)
         {
+            int index = listBox_words.SelectedIndex;
             string? line = listBox_words.SelectedItem?.ToString();
             if (line == null)
             {
@@ -83,6 +84,7 @@ namespace LearnEnglishNotify
             _words[realIndex] = $"{textBox_word.Text} - {textBox_translate.Text}";
             DisplayWords(_words);
             OnModified?.Invoke(true);
+            listBox_words.SelectedIndex = index;
         }
 
         private void button_remove_Click(object sender, EventArgs e)
@@ -96,6 +98,8 @@ namespace LearnEnglishNotify
             _words.Remove(line);
             DisplayWords(_words);
             OnModified?.Invoke(true);
+            textBox_word.Clear();
+            textBox_translate.Clear();
         }
 
         private void textBox_find_TextChanged(object sender, EventArgs e)
