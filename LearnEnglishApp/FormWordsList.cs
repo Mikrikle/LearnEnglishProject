@@ -18,7 +18,7 @@ namespace LearnEnglishNotify
 
         private List<string> _words = new();
 
-        private void UpdateWords()
+        public void UpdateWords()
         {
             _words = FileController.ReadLines().ToList();
             DisplayWords(_words);

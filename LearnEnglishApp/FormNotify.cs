@@ -2,6 +2,8 @@ namespace LearnEnglishNotify
 {
     public partial class Form_Add : System.Windows.Forms.Form
     {
+        public event Action<bool>? OnAdded = null;
+
         private readonly FormWordsList _formWordsList = new();
         private readonly FormPopup _popup = new();
         private readonly FormMenu _menu = new FormMenu();
@@ -10,6 +12,21 @@ namespace LearnEnglishNotify
         {
             InitializeComponent();
             SetPosition();
+
+            OnAdded += (sucsess) => {
+                if (sucsess)
+                {
+                    FileController.Add($"{textBox_word.Text} - {textBox_translate.Text}");
+                    textBox_word.Clear();
+                    textBox_translate.Clear();
+                    _popup.ShowSuccess("Added");
+                    _formWordsList.UpdateWords();
+                }
+                else
+                {
+                    _popup.ShowError("Empty input");
+                }
+            };
 
             notifyIcon_app.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
             notifyIcon_app.ContextMenuStrip.Items.Add("Open", null,
@@ -91,14 +108,10 @@ namespace LearnEnglishNotify
             if (String.IsNullOrWhiteSpace(textBox_translate.Text)
                 || String.IsNullOrWhiteSpace(textBox_translate.Text))
             {
-                _popup.ShowError("Empty input");
+                OnAdded?.Invoke(false);
                 return;
             }
-
-            FileController.Add($"{textBox_word.Text} - {textBox_translate.Text}");
-            textBox_word.Clear();
-            textBox_translate.Clear();
-            _popup.ShowSuccess("Added");
+            OnAdded?.Invoke(true);
         }
 
         private void button_words_Click(object sender, EventArgs e)
