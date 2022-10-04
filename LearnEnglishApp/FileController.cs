@@ -89,11 +89,5 @@ namespace LearnEnglishNotify
         {
             File.WriteAllText(WordsFileName, text);
         }
-
-        public static void RemoveDuplicates()
-        {
-            List<string> lines = ReadLines().ToList();
-            Update(lines.Distinct());
-        }
     }
 }

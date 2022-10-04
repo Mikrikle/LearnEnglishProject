@@ -56,7 +56,7 @@ namespace LearnEnglishNotify
 
         private void button_removeDuplicates_Click(object sender, EventArgs e)
         {
-            FileController.RemoveDuplicates();
+            FileActions.RemoveDuplicates();
         }
     }
 }
