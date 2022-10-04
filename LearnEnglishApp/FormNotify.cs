@@ -2,10 +2,22 @@ namespace LearnEnglishNotify
 {
     public partial class Form_Add : System.Windows.Forms.Form
     {
+        /// <summary>
+        /// Occurs when new words have been added
+        /// </summary>
         public event Action<bool>? OnAdded = null;
 
+        /// <summary>
+        /// Window with the wordlist
+        /// </summary>
         private readonly FormWordsList _formWordsList = new();
+        /// <summary>
+        /// Information pop-up window
+        /// </summary>
         private readonly FormPopup _popup = new();
+        /// <summary>
+        /// Settings and tools window
+        /// </summary>
         private readonly FormMenu _menu = new FormMenu();
 
         public Form_Add()
@@ -13,6 +25,21 @@ namespace LearnEnglishNotify
             InitializeComponent();
             SetPosition();
 
+            // create context menu
+            notifyIcon_app.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+            notifyIcon_app.ContextMenuStrip.Items.Add("Open", null,
+                (object? sender, EventArgs e) => { Show(); });
+            notifyIcon_app.ContextMenuStrip.Items.Add("Menu", null,
+                (object? sender, EventArgs e) => { if (!_menu.Visible) _menu.ShowDialog(); });
+            notifyIcon_app.ContextMenuStrip.Items.Add("Exit", null,
+                (object? sender, EventArgs e) => { Application.Exit(); });
+
+            // setting position relative to this form
+            _popup.FixLocation = new Point(this.Location.X, this.Location.Y - _popup.Height - 10);
+            _formWordsList.FixLocation = new Point(this.Location.X - _formWordsList.Width - 10,
+                    this.Location.Y + this.Height - _formWordsList.Height);
+
+            // setting events
             OnAdded += (sucsess) => {
                 if (sucsess)
                 {
@@ -28,48 +55,37 @@ namespace LearnEnglishNotify
                 }
             };
 
-            notifyIcon_app.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
-            notifyIcon_app.ContextMenuStrip.Items.Add("Open", null,
-                (object? sender, EventArgs e) => { Show(); });
-            notifyIcon_app.ContextMenuStrip.Items.Add("Menu", null,
-                (object? sender, EventArgs e) => { if (!_menu.Visible) _menu.ShowDialog(); });
-            notifyIcon_app.ContextMenuStrip.Items.Add("Exit", null,
-                (object? sender, EventArgs e) => { Application.Exit(); });
-
-            _popup.FixLocation = new Point(this.Location.X, this.Location.Y - _popup.Height - 10);
-            _formWordsList.FixLocation = new Point(this.Location.X - _formWordsList.Width - 10,
-                    this.Location.Y + this.Height - _formWordsList.Height);
-
             _formWordsList.VisibleChanged += (object? sender, EventArgs e) =>
             {
                 if (sender is not FormWordsList f) return;
-                if (f.Visible)
-                    button_words.Text = "Close";
-                else
-                    button_words.Text = "Words";
+                button_words.Text = f.Visible ? "Close" : "Words";
             };
 
-            _formWordsList.OnSaved += (bool state) =>
+            _formWordsList.OnSaved += (bool sucsess) =>
             {
-                if (state)
+                if (sucsess)
                     _popup.ShowSuccess("Saved");
             };
-            _formWordsList.OnModified += (bool state) =>
+            _formWordsList.OnModified += (bool sucsess) =>
             {
-                if (state)
+                if (sucsess)
                     _popup.ShowSuccess("Successful");
                 else
-                    _popup.ShowError("Select item");
+                    _popup.ShowError("Please select item");
             };
 
         }
 
-        private void ShowWordsList()
+        /// <summary>
+        /// Places the form in the lower right corner
+        /// </summary>
+        private void SetPosition()
         {
-            if (!_formWordsList.Visible)
-            {
-                _formWordsList.Show();
-            }
+            int boundWidth = Screen.PrimaryScreen.Bounds.Width;
+            int boundHeight = Screen.PrimaryScreen.Bounds.Height;
+            int x = boundWidth - Width;
+            int y = boundHeight - Height;
+            Location = new Point(x - 10, y - 50);
         }
 
         private void Form_Notify_Shown(object sender, EventArgs e)
@@ -81,15 +97,6 @@ namespace LearnEnglishNotify
         {
             if (e.Button == MouseButtons.Right)
                 Hide();
-        }
-
-        private void SetPosition()
-        {
-            int boundWidth = Screen.PrimaryScreen.Bounds.Width;
-            int boundHeight = Screen.PrimaryScreen.Bounds.Height;
-            int x = boundWidth - Width;
-            int y = boundHeight - Height;
-            Location = new Point(x - 10, y - 50);
         }
 
         private void notifyIcon_app_MouseClick(object sender, MouseEventArgs e)
@@ -117,13 +124,9 @@ namespace LearnEnglishNotify
         private void button_words_Click(object sender, EventArgs e)
         {
             if (!_formWordsList.Visible)
-            {
-                ShowWordsList();
-            }
+                _formWordsList.Show();
             else
-            {
                 _formWordsList.Hide();
-            }
         }
     }
 }

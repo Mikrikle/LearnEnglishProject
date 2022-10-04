@@ -13,6 +13,9 @@ namespace LearnEnglishNotify
 {
     public partial class FormPopup : Form
     {
+        /// <summary>
+        /// Position where pop-up will appear after calling Show()
+        /// </summary>
         public Point FixLocation { get; set; }
 
         public FormPopup()

@@ -12,24 +12,33 @@ namespace LearnEnglishNotify
 {
     public partial class FormWordsList : Form
     {
+        /// <summary>
+        /// Occurs when user saved changes
+        /// </summary>
         public event Action<bool>? OnSaved = null;
+        /// <summary>
+        /// Occurs when user modified word
+        /// </summary>
         public event Action<bool>? OnModified = null;
-        public Point FixLocation { get; set; }
 
+        /// <summary>
+        /// Position where form will appear after calling Show()
+        /// </summary>
+        public Point FixLocation { get; set; }
         private List<string> _words = new();
 
+        /// <summary>
+        /// Updating the form with words from a file
+        /// </summary>
         public void UpdateWords()
         {
             _words = FileController.ReadLines().ToList();
             DisplayWords(_words);
         }
 
-        private void ClearWords()
+        public FormWordsList()
         {
-            _words.Clear();
-            textBox_word.Clear();
-            textBox_translate.Clear();
-            textBox_find.Clear();
+            InitializeComponent();
         }
 
         public new void Show()
@@ -38,6 +47,20 @@ namespace LearnEnglishNotify
             Location = FixLocation;
         }
 
+        /// <summary>
+        /// Remove all words from form
+        /// </summary>
+        private void ClearWords()
+        {
+            _words.Clear();
+            textBox_word.Clear();
+            textBox_translate.Clear();
+            textBox_find.Clear();
+        }
+
+        /// <summary>
+        /// Fill in list box element by words
+        /// </summary>
         private void DisplayWords(List<string> list)
         {
             int temp = listBox_words.TopIndex;
@@ -46,11 +69,6 @@ namespace LearnEnglishNotify
                 listBox_words.Items.Add(word);
             if (temp < listBox_words.Items.Count)
                 listBox_words.TopIndex = temp;
-        }
-
-        public FormWordsList()
-        {
-            InitializeComponent();
         }
 
         private void button_update_Click(object sender, EventArgs e)
