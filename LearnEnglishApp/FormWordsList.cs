@@ -140,6 +140,13 @@ namespace LearnEnglishNotify
         {
             if (e.Button == MouseButtons.Right)
                 Hide();
+
+            if (e.Button == MouseButtons.Left)
+            {
+                listBox_words.SelectedItem = null;
+                textBox_word.Clear();
+                textBox_translate.Clear();
+            }
         }
 
         private void FormWordsList_VisibleChanged(object sender, EventArgs e)
