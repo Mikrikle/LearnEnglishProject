@@ -45,6 +45,7 @@
             this.label_text.TabIndex = 0;
             this.label_text.Text = "label1";
             this.label_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_text.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormPopup_MouseClick);
             // 
             // timer_close
             // 

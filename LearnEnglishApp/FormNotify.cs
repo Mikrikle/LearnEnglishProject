@@ -30,7 +30,6 @@ namespace LearnEnglishNotify
                 (object? sender, EventArgs e) => { Application.Exit(); });
 
             // setting position relative to this form
-            _popup.FixLocation = new Point(this.Location.X, this.Location.Y - _popup.Height - 10);
             _formWordsList.FixLocation = new Point(this.Location.X - _formWordsList.Width - 10,
                     this.Location.Y + this.Height - _formWordsList.Height);
 
@@ -44,14 +43,14 @@ namespace LearnEnglishNotify
             _formWordsList.OnSaved += (bool sucsess) =>
             {
                 if (sucsess)
-                    _popup.ShowSuccess("Saved");
+                    _popup.ShowSuccess("Saved", _formWordsList);
             };
             _formWordsList.OnModified += (bool sucsess) =>
             {
                 if (sucsess)
-                    _popup.ShowSuccess("Successful");
+                    _popup.ShowSuccess("Successful", _formWordsList);
                 else
-                    _popup.ShowError("Please select item");
+                    _popup.ShowError("Please select item", _formWordsList);
             };
 
         }
@@ -64,14 +63,14 @@ namespace LearnEnglishNotify
             if (String.IsNullOrWhiteSpace(textBox_translate.Text)
                 || String.IsNullOrWhiteSpace(textBox_translate.Text))
             {
-                _popup.ShowError("Empty input");
+                _popup.ShowError("Empty input", this);
                 return;
             }
 
             FileController.Add($"{textBox_word.Text} - {textBox_translate.Text}");
             textBox_word.Clear();
             textBox_translate.Clear();
-            _popup.ShowSuccess("Added");
+            _popup.ShowSuccess("Added", this);
             _formWordsList.UpdateWords();
         }
 
