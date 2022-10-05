@@ -58,5 +58,15 @@ namespace LearnEnglishNotify
         {
             FileActions.RemoveDuplicates();
         }
+
+        private void button_showFile_Click(object sender, EventArgs e)
+        {
+            FileActions.ShowFileInExplorer();
+        }
+
+        private void button_openFile_Click(object sender, EventArgs e)
+        {
+            FileActions.OpenFile();
+        }
     }
 }

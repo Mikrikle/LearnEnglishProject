@@ -36,6 +36,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button_showFile = new System.Windows.Forms.Button();
+            this.button_openFile = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +107,7 @@
             // 
             this.panel2.Location = new System.Drawing.Point(13, 388);
             this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(10);
             this.panel2.Size = new System.Drawing.Size(778, 49);
             this.panel2.TabIndex = 6;
             // 
@@ -123,6 +126,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button_openFile);
+            this.groupBox2.Controls.Add(this.button_showFile);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.textBox_fileName);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -134,6 +139,34 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Settings";
+            // 
+            // button_showFile
+            // 
+            this.button_showFile.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.button_showFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_showFile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_showFile.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_showFile.Location = new System.Drawing.Point(10, 93);
+            this.button_showFile.Name = "button_showFile";
+            this.button_showFile.Size = new System.Drawing.Size(156, 30);
+            this.button_showFile.TabIndex = 1;
+            this.button_showFile.Text = "Show file";
+            this.button_showFile.UseVisualStyleBackColor = false;
+            this.button_showFile.Click += new System.EventHandler(this.button_showFile_Click);
+            // 
+            // button_openFile
+            // 
+            this.button_openFile.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.button_openFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_openFile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_openFile.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_openFile.Location = new System.Drawing.Point(172, 93);
+            this.button_openFile.Name = "button_openFile";
+            this.button_openFile.Size = new System.Drawing.Size(156, 30);
+            this.button_openFile.TabIndex = 4;
+            this.button_openFile.Text = "Open file";
+            this.button_openFile.UseVisualStyleBackColor = false;
+            this.button_openFile.Click += new System.EventHandler(this.button_openFile_Click);
             // 
             // FormMenu
             // 
@@ -168,5 +201,7 @@
         private Panel panel2;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
+        private Button button_showFile;
+        private Button button_openFile;
     }
 }

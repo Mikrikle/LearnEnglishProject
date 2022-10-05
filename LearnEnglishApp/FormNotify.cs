@@ -22,7 +22,7 @@ namespace LearnEnglishNotify
 
             // create context menu
             notifyIcon_app.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
-            notifyIcon_app.ContextMenuStrip.Items.Add("Open", null,
+            notifyIcon_app.ContextMenuStrip.Items.Add("Show", null,
                 (object? sender, EventArgs e) => { Show(); });
             notifyIcon_app.ContextMenuStrip.Items.Add("Menu", null,
                 (object? sender, EventArgs e) => { if (!_menu.Visible) _menu.ShowDialog(); });
