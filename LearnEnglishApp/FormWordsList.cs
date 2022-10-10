@@ -15,11 +15,11 @@ namespace LearnEnglishNotify
         /// <summary>
         /// Occurs when user saved changes
         /// </summary>
-        public event Action<bool>? OnSaved = null;
+        public event Action<bool>? OnSave = null;
         /// <summary>
         /// Occurs when user modified word
         /// </summary>
-        public event Action<bool>? OnModified = null;
+        public event Action<bool>? OnModify = null;
 
         /// <summary>
         /// Position where form will appear after calling Show()
@@ -77,13 +77,13 @@ namespace LearnEnglishNotify
             string? line = listBox_words.SelectedItem?.ToString();
             if (line == null)
             {
-                OnModified?.Invoke(false);
+                OnModify?.Invoke(false);
                 return;
             }
             int realIndex = _words.IndexOf(line);
             _words[realIndex] = $"{textBox_word.Text} - {textBox_translate.Text}";
             DisplayWords(_words);
-            OnModified?.Invoke(true);
+            OnModify?.Invoke(true);
             listBox_words.SelectedIndex = index;
         }
 
@@ -92,12 +92,12 @@ namespace LearnEnglishNotify
             string? line = listBox_words.SelectedItem?.ToString();
             if (line == null)
             {
-                OnModified?.Invoke(false);
+                OnModify?.Invoke(false);
                 return;
             }
             _words.Remove(line);
             DisplayWords(_words);
-            OnModified?.Invoke(true);
+            OnModify?.Invoke(true);
             textBox_word.Clear();
             textBox_translate.Clear();
         }
@@ -133,7 +133,7 @@ namespace LearnEnglishNotify
         {
             FileController.Update(_words);
             UpdateWords();
-            OnSaved?.Invoke(true);
+            OnSave?.Invoke(true);
         }
 
         private void FormWordsList_MouseClick(object sender, MouseEventArgs e)

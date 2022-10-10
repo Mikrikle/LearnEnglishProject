@@ -1,6 +1,6 @@
 ﻿namespace LearnEnglishNotify
 {
-    partial class Form_Add
+    partial class FormAdd
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Add));
-            this.notifyIcon_app = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox_translate = new System.Windows.Forms.TextBox();
             this.textBox_word = new System.Windows.Forms.TextBox();
@@ -39,13 +36,6 @@
             this.button_words = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // notifyIcon_app
-            // 
-            this.notifyIcon_app.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon_app.Icon")));
-            this.notifyIcon_app.Text = "LearnEnglish";
-            this.notifyIcon_app.Visible = true;
-            this.notifyIcon_app.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_app_MouseClick);
             // 
             // panel1
             // 
@@ -122,7 +112,7 @@
             this.button_words.UseVisualStyleBackColor = false;
             this.button_words.Click += new System.EventHandler(this.button_words_Click);
             // 
-            // Form_Add
+            // FormAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -134,13 +124,13 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
-            this.Name = "Form_Add";
+            this.Name = "FormAdd";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "LearnEnglish";
             this.TopMost = true;
-            this.Shown += new System.EventHandler(this.Form_Notify_Shown);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form_Notify_MouseClick);
+            this.Shown += new System.EventHandler(this.FormAdd_Shown);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormAdd_MouseClick);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -148,13 +138,11 @@
         }
 
         #endregion
-
-        private NotifyIcon notifyIcon_app;
         private Panel panel1;
         private Label label_info;
         private TextBox textBox_word;
         private TextBox textBox_translate;
         private Button button_ok;
-        private Button button_words;
+        public Button button_words;
     }
 }
