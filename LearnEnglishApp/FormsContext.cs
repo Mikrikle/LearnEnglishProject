@@ -96,12 +96,18 @@ namespace LearnEnglishNotify
         /// </summary>
         private void SetNotifyIcon()
         {
-            _formNotify.NotifyIcon.ContextMenuStrip.Items.Add(
-                "Show", null, (object? sender, EventArgs e) => { _formAdd.Show(); } );
-            _formNotify.NotifyIcon.ContextMenuStrip.Items.Add("Menu", null,
-                (object? sender, EventArgs e) => { if (!_formMenu.Visible) _formMenu.ShowDialog(); });
-            _formNotify.NotifyIcon.ContextMenuStrip.Items.Add("Exit", null,
-                (object? sender, EventArgs e) => { Application.Exit(); });
+            Dictionary<string, Action> menuItems = new()
+            {
+                ["Words"] = () => _formWordsList.Show(),
+                ["Add"] = () => _formAdd.Show(),
+                ["Menu"] = () => { if (!_formMenu.Visible) _formMenu.ShowDialog(); },
+                ["Exit"] = () => Application.Exit(),
+            };
+            foreach(var item in menuItems)
+            {
+                _formNotify.NotifyIcon.ContextMenuStrip.Items.Add(item.Key, null,
+                (object? sender, EventArgs e) => { item.Value(); });
+            }
 
             _formNotify.NotifyIcon.MouseClick += (object? sender, MouseEventArgs e) =>
             {
