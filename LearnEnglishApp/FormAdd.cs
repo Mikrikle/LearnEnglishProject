@@ -15,7 +15,8 @@ namespace LearnEnglishNotify
         /// <summary>
         /// Writes word and translate into file
         /// </summary>
-        private void Add()
+        /// <param name="isHideForm">will the form be hidden after adding an record</param>
+        private void Add(bool isHideForm = false)
         {
             if (String.IsNullOrWhiteSpace(textBox_translate.Text)
                 || String.IsNullOrWhiteSpace(textBox_translate.Text))
@@ -28,6 +29,7 @@ namespace LearnEnglishNotify
             textBox_word.Clear();
             textBox_translate.Clear();
             OnAdd?.Invoke(true);
+            if(isHideForm) Hide();
         }
 
         private void FormAdd_Shown(object sender, EventArgs e)
@@ -43,7 +45,7 @@ namespace LearnEnglishNotify
 
         private void button_ok_Click(object sender, EventArgs e)
         {
-            Add();
+            Add(e is not MouseEventArgs);
         }
 
         private void button_words_Click(object sender, EventArgs e)
